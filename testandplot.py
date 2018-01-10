@@ -52,7 +52,7 @@ fd.close()
 #Start Plotting
 # Header infomation is "Server ID,Sponsor,Server Name,Timestamp,Distance,Ping,Download,Upload"
 ###########################
-plotly.tools.set_credentials_file(username='doommius', api_key='CJhwjF5RDdWT7Our35Bp')
+plotly.tools.set_credentials_file(username='username', api_key='apt-code')
 df = pd.read_csv('/var/www/data/results.csv')
 upload = go.Scatter(
     x=df["Timestamp"],

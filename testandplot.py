@@ -8,7 +8,7 @@ import pandas as pd
 
 ###########################
 #
-# Speedtest
+# config
 #
 ###########################
 
@@ -16,6 +16,17 @@ server1 = "speedtest --server 3628 --csv"
 server1error = "3628,SE,Sonderborg"
 server2 = "speedtest --server 4435 --csv"
 server3 = "speedtest --server 8763 --csv"
+pinglowerbound = 0
+pingupperbound = 1000
+bandwidthupperbound = 150000000
+bandwidthlowerbound = 0
+
+###########################
+#
+# speedtest
+#
+###########################
+
 
 def writeerror(errormsg, outputmsg):
     fd = open('error.csv', 'a')

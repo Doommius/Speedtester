@@ -101,7 +101,6 @@ layout = dict(
     ),
     yaxis2=dict(
         title='ms latency',
-        range=[0, 50],
         titlefont=dict(
             color='d62728'
         ),

@@ -12,14 +12,21 @@ import pandas as pd
 #
 ###########################
 
+
+plotlyusername = "doommius"
+plotlyapi = ""
+
 server1 = "speedtest --server 3628 --csv"
 server1error = "3628,SE,Sonderborg"
 server2 = "speedtest --server 4435 --csv"
 server3 = "speedtest --server 8763 --csv"
+
 pinglowerbound = 0
-pingupperbound = 1000
+pingupperbound = 2000
 bandwidthupperbound = 150000000
 bandwidthlowerbound = 0
+plotfilename = "networkspeed"
+plottitle = 'Network Speed for SE Sonderborg server'
 
 ###########################
 #
@@ -49,7 +56,7 @@ if ("Cannot" in str(output)):
     output, error = process.communicate()
 if ("Cannot" in str(output)):
     writeerror(server1error, output)
-    output = "3628,SE,Sonderborg," + datetime.datetime.fromtimestamp(time.time()).strftime(
+    output = server1error + datetime.datetime.fromtimestamp(time.time()).strftime(
         '%Y-%m-%dT%H:%M:%S') + "Z,0,0,0,0"
 output =(str(output)[2:])[:-3]
 print(output)
@@ -63,7 +70,7 @@ fd.close()
 #Start Plotting
 # Header infomation is "Server ID,Sponsor,Server Name,Timestamp,Distance,Ping,Download,Upload"
 ###########################
-plotly.tools.set_credentials_file(username='username', api_key='apt-code')
+plotly.tools.set_credentials_file(username=plotlyusername, api_key=plotlyapi)
 df = pd.read_csv('/var/www/data/results.csv')
 upload = go.Scatter(
     x=df["Timestamp"],
@@ -88,13 +95,21 @@ ping = go.Scatter(
     line=dict(color='#d62728'),
     opacity=0.8)
 layout = dict(
-    title='Network Speed for SE Sonderborg server',
+    title=plottitle,
     xaxis=dict(
         rangeselector=dict(
             buttons=list([
                 dict(count=1,
-                     label='1w',
-                     step='week',
+                     label='1d',
+                     step='day',
+                     stepmode='backward'),
+                dict(count=7,
+                     label='7d',
+                     step='day',
+                     stepmode='backward'),
+                dict(count=14,
+                     label='14d',
+                     step='day',
                      stepmode='backward'),
                 dict(count=1,
                      label='1m',
@@ -108,10 +123,11 @@ layout = dict(
     ),
     yaxis=dict(
         title='bit/s',
-        range=[0, 150000000]
+        range=[bandwidthlowerbound, bandwidthupperbound]
     ),
     yaxis2=dict(
         title='ms latency',
+        range=[pinglowerbound, pingupperbound],
         titlefont=dict(
             color='d62728'
         ),
@@ -126,9 +142,9 @@ layout = dict(
 data = [download, upload, ping]
 fig = dict(data=data, layout=layout)
 
-url = py.plot(fig, filename="networkspeed", auto_open=False)
+url = py.plot(fig, filename=plotfilename, auto_open=False)
 print(url)
-plotembed = ("<iframe width=\"1900\" height=\"840\" frameborder=\"0\" scrolling=\"no\" src=\"" + url +".embed\"></iframe>")
-fd = open('/var/www/html/speedtestplot.php')
-fd.write(plotembed)
-fd.close()
+# plotembed = ("<iframe width=\"1900\" height=\"840\" frameborder=\"0\" scrolling=\"no\" src=\"" + url +".embed\"></iframe>")
+# fd = open('/var/www/html/speedtestplot.php')
+# fd.write(plotembed)
+# fd.close()

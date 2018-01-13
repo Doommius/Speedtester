@@ -13,20 +13,26 @@ import pandas as pd
 ###########################
 
 
-plotlyusername = "doommius"
-plotlyapi = ""
 
-server1 = "speedtest --server 3628 --csv"
+plotlyusername = "username"
+plotlyapi = "apt-key"
+
+# Get server id from speedtest-cli --list
+# Maybe good idea to pipe result into head -n # to get servers near you.
+# speedtest-cli --list | head -n 10
+server = "speedtest --server 3628 --csv"
+# First 3 first fields of result csv to indicate what server is given issues, if using multiple servers.
+
 server1error = "3628,SE,Sonderborg"
-server2 = "speedtest --server 4435 --csv"
-server3 = "speedtest --server 8763 --csv"
 
 pinglowerbound = 0
 pingupperbound = 2000
-bandwidthupperbound = 150000000
+# units are in bits/s so 150000000 is 150 Mbit/s
 bandwidthlowerbound = 0
-plotfilename = "networkspeed"
-plottitle = 'Network Speed for SE Sonderborg server'
+bandwidthupperbound = 150000000
+
+plotfilename = "Plot Name"
+plottitle = "Plot Titel"
 
 ###########################
 #
@@ -43,16 +49,16 @@ def writeerror(errormsg, outputmsg):
     fd.close()
 output = ""
 if (True):
-    process = subprocess.Popen(server1.split(), stdout=subprocess.PIPE)
+    process = subprocess.Popen(server.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     print (output)
 if ("Cannot" in str(output)):
     writeerror(server1error,output)
-    process = subprocess.Popen(server1.split(), stdout=subprocess.PIPE)
+    process = subprocess.Popen(server.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 if ("Cannot" in str(output)):
     writeerror(server1error, output)
-    process = subprocess.Popen(server1.split(), stdout=subprocess.PIPE)
+    process = subprocess.Popen(server.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 if ("Cannot" in str(output)):
     writeerror(server1error, output)

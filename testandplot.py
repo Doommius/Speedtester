@@ -29,7 +29,7 @@ pinglowerbound = 0
 pingupperbound = 2000
 # units are in bits/s so 150000000 is 150 Mbit/s
 bandwidthlowerbound = 0
-bandwidthupperbound = 150000000
+bandwidthupperbound = 120000000
 
 plotfilename = "Plot Name"
 plottitle = "Plot Titel"

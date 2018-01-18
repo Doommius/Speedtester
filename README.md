@@ -1,7 +1,7 @@
 # Speedtester
 Had some problems with my isp not giving me the speed i paid for. so made a script to log the speed every 15 minutes.
 
-An exsameple of the plot generated can be seen at doommius.com/speedtest.php
+An exsameple of the plot generated can be seen at https://doommius.com/speedtest.php
 
 Works with python3.6
 

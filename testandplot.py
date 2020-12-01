@@ -1,9 +1,9 @@
 import subprocess
 import time
 import datetime
-import chart_studio.plotly
-import chart_studio.plotly.plotly as py
-import chart_studio.plotly.graph_objs as go
+#import chart_studio.plotly
+#import chart_studio.plotly.plotly as py
+#import chart_studio.plotly.graph_objs as go
 import pandas as pd
 
 ###########################
@@ -14,8 +14,8 @@ import pandas as pd
 
 
 
-plotlyusername = "username"
-plotlyapi = "apt-key"
+#plotlyusername = "username"
+#plotlyapi = "apt-key"
 
 # Get server id from speedtest-cli --list
 # Maybe good idea to pipe result into head -n # to get servers near you.
@@ -76,6 +76,7 @@ fd.close()
 #Start Plotting
 # Header infomation is "Server ID,Sponsor,Server Name,Timestamp,Distance,Ping,Download,Upload"
 ###########################
+'''
 plotly.tools.set_credentials_file(username=plotlyusername, api_key=plotlyapi)
 df = pd.read_csv('/var/www/data/results.csv')
 upload = go.Scatter(
@@ -145,12 +146,14 @@ layout = dict(
     )
 )
 
-data = [download, upload, ping]
-fig = dict(data=data, layout=layout)
+#data = [download, upload, ping]
+#fig = dict(data=data, layout=layout)
 
-url = py.plot(fig, filename=plotfilename, auto_open=False)
-print(url)
+#url = py.plot(fig, filename=plotfilename, auto_open=False)
+#print(url)
 # plotembed = ("<iframe width=\"1900\" height=\"840\" frameborder=\"0\" scrolling=\"no\" src=\"" + url +".embed\"></iframe>")
 # fd = open('/var/www/html/speedtestplot.php')
 # fd.write(plotembed)
 # fd.close()
+'''
+

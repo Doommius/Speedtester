@@ -20,10 +20,10 @@ import pandas as pd
 # Get server id from speedtest-cli --list
 # Maybe good idea to pipe result into head -n # to get servers near you.
 # speedtest-cli --list | head -n 10
-server = "speedtest --server 3628 --csv"
+server = "speedtest --server 20193 --csv"
 # First 3 first fields of result csv to indicate what server is given issues, if using multiple servers.
 
-server1error = "3628,SE,Sonderborg"
+server1error = "20193,SE,Sonderborg"
 
 pinglowerbound = 0
 pingupperbound = 2000

@@ -1,9 +1,9 @@
 import subprocess
 import time
 import datetime
-import plotly
-import plotly.plotly as py
-import plotly.graph_objs as go
+import chart_studio.plotly
+import chart_studio.plotly.plotly as py
+import chart_studio.plotly.graph_objs as go
 import pandas as pd
 
 ###########################

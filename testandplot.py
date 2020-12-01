@@ -66,7 +66,7 @@ if ("Cannot" in str(output)):
         '%Y-%m-%dT%H:%M:%S') + "Z,0,0,0,0"
 output =(str(output)[2:])[:-3]
 print(output)
-fd = open('/var/www/data/results.csv', 'a')
+fd = open('data/results.csv', 'a')
 fd.write(output+"\n")
 fd.close()
 
